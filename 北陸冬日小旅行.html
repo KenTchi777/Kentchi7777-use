@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>北陸冬日小旅行</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FFFCF6;--ink:#3E3A39;--coral:#F2A497;--yellow:#F6D27A;--sky:#A8D3E6;--green:#B9DAA5;--r:24px;--b:3px solid var(--ink);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{height:auto;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Huninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.6;font-size:16px}
+@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--paper);z-index:20}
+nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:30;background:var(--paper);border-bottom:var(--b);display:flex;gap:8px;overflow-x:auto;padding:10px 12px;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{flex:none;color:var(--ink);text-decoration:none;border:var(--b);border-radius:999px;padding:2px 14px;font-size:15px;background:var(--paper)}
+nav a:nth-child(4n+1){background:var(--coral)}nav a:nth-child(4n+2){background:var(--yellow)}nav a:nth-child(4n+3){background:var(--sky)}nav a:nth-child(4n){background:var(--green)}
+main{max-width:640px;margin:0 auto;padding:72px 16px 40px}
+section{margin-top:28px}
+h2{font-size:22px;margin:0 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:"";width:16px;height:16px;border:var(--b);border-radius:50%;background:var(--coral)}
+.card{background:var(--paper);border:var(--b);border-radius:var(--r);padding:16px}
+.hero{background:var(--sky);border:var(--b);border-radius:32px;overflow:hidden;text-align:center}
+.hero svg{display:block;width:100%;height:auto}
+.hero .t{background:var(--paper);border-top:var(--b);padding:14px 12px 18px}
+.hero h1{margin:0;font-size:30px;letter-spacing:2px}
+.hero p{margin:2px 0 12px;font-size:14px}
+.count{display:inline-flex;align-items:baseline;gap:6px;background:var(--yellow);border:var(--b);border-radius:999px;padding:4px 22px}
+.count b{font-size:34px;line-height:1.2}
+.flight{margin-bottom:12px;position:relative}
+.flight .tag{position:absolute;top:-12px;left:16px}
+.fr{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
+.fr div{text-align:center}.fr big{font-size:28px;display:block;line-height:1.2}
+.line{flex:1;border-top:3px dashed var(--ink);position:relative;height:0}
+.line::after{content:"🚗";position:absolute;left:50%;top:-16px;transform:translateX(-50%);background:var(--paper);padding:0 4px}
+.line.air::after{content:"✈"}
+.meta{font-size:13px;margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.tag{display:inline-block;border:var(--b);border-radius:999px;padding:0 10px;font-size:13px;line-height:1.5;background:var(--paper);white-space:nowrap}
+.c-coral{background:var(--coral)}.c-yellow{background:var(--yellow)}.c-sky{background:var(--sky)}.c-green{background:var(--green)}
+.days{display:flex;gap:8px;margin-bottom:14px;overflow-x:auto;padding:4px 2px 8px;scrollbar-width:none}.days::-webkit-scrollbar{display:none}
+.day{flex:none;min-width:64px;border:var(--b);border-radius:20px;background:var(--paper);padding:6px 0;font:inherit;color:var(--ink);cursor:pointer;line-height:1.3}
+.day small{display:block;font-size:12px}.day b{font-size:17px}
+.day[aria-selected=true]{background:var(--coral)}
+.day.bounce{animation:bounce .55s cubic-bezier(.3,1.6,.5,1)}
+@keyframes bounce{0%{transform:scale(.8)}60%{transform:scale(1.12) rotate(-2deg)}100%{transform:scale(1)}}
+.dh{margin:0 0 10px;font-size:18px}
+.tl{list-style:none;margin:0;padding:0 0 0 22px;position:relative}
+.tl::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;border-left:3px dashed var(--ink)}
+.tl li{position:relative;margin-bottom:12px;background:var(--paper);border:var(--b);border-radius:20px;padding:10px 12px}
+.tl li::before{content:"";position:absolute;left:-23px;top:14px;width:14px;height:14px;border:var(--b);border-radius:50%;background:var(--yellow)}
+.tl li.must::before{background:var(--coral)}
+.tl.pop li{animation:pop .5s cubic-bezier(.3,1.5,.5,1) both;animation-delay:calc(var(--i)*70ms)}
+@keyframes pop{0%{opacity:0;transform:translateY(18px) scale(.92)}100%{opacity:1;transform:none}}
+.tm{font-size:15px;margin-right:6px}.tt{font-size:17px}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:4px}
+.note{font-size:14px;margin:4px 0 0}
+.must-b{background:var(--coral);transform:rotate(-4deg)}
+.ck{list-style:none;margin:0;padding:0}
+.ck li{margin:0 0 8px}
+.ck label{display:flex;gap:10px;align-items:center;cursor:pointer;border:var(--b);border-radius:18px;padding:8px 12px}
+.ck input{appearance:none;-webkit-appearance:none;flex:none;width:26px;height:26px;border:var(--b);border-radius:9px;margin:0;background:var(--paper);display:grid;place-items:center;cursor:pointer}
+.ck input::after{content:"";width:10px;height:15px;border:solid var(--ink);border-width:0 3px 3px 0;transform:rotate(45deg) scale(0);margin-top:-3px}
+.ck input:checked{background:var(--green)}
+.ck input:checked::after{transform:rotate(45deg) scale(1);transition:transform .25s cubic-bezier(.3,1.8,.5,1)}
+.ck input:checked+span{text-decoration:line-through;opacity:.55}
+.ck input:focus-visible,.day:focus-visible,nav a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.prog{font-size:14px;margin:-6px 0 10px}
+.pg{margin:12px 0 6px;font-size:16px}
+.inf{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;margin:10px 0 0}
+.inf dt{font-size:14px}.inf dd{margin:0}
+footer{text-align:center;font-size:13px;margin-top:32px}
+.cl{animation:drift 14s ease-in-out infinite alternate}.cl2{animation-duration:19s;animation-direction:alternate-reverse}
+.sun{animation:spin 24s linear infinite;transform-origin:62px 52px}
+.tr{animation:ride 9s ease-in-out infinite alternate}
+.sway{animation:sway 4s ease-in-out infinite;transform-origin:250px 190px}
+.bob{animation:bob 3s ease-in-out infinite}
+@keyframes drift{to{transform:translateX(34px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes ride{from{transform:translateX(-70px)}to{transform:translateX(290px)}}
+@keyframes sway{50%{transform:rotate(1.2deg)}}
+@keyframes bob{50%{transform:translateY(-4px)}}
+.wx{background:var(--sky);margin-bottom:12px;padding:12px 14px}.wh{display:flex;gap:12px;align-items:center}.wh small{font-size:12px}.wi{font-size:34px;line-height:1;display:inline-block;animation:bob 3s ease-in-out infinite}.wx .note{margin:8px 0 6px}.wx a,.row a,.card a.tag{color:var(--ink);text-decoration:none}.tt a,.card h3 a,.inf a{color:var(--ink);text-decoration:underline dotted;text-underline-offset:4px}.sumbar{margin:0 0 12px;display:flex;gap:6px;flex-wrap:wrap}
+.sf{animation:snow 7s linear infinite}@keyframes snow{0%{transform:translate(0,-30px);opacity:0}10%{opacity:1}100%{transform:translate(14px,210px);opacity:1}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav>
+<a href="#top">首頁</a><a href="#air">航班</a><a href="#flight">租車</a><a href="#plan">行程</a><a href="#stay">住宿</a><a href="#pre">出發前</a><a href="#pack">行李</a>
+</nav>
+<main id="top">
+<div class="hero">
+<svg viewBox="0 0 360 230" role="img" aria-label="北陸插畫：雪山、合掌造民家、小車與飄雪" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+<rect width="360" height="230" fill="#A8D3E6" stroke="none"/>
+<g class="sun"><circle cx="62" cy="52" r="22" fill="#F6D27A"/><path d="M62 18v-6M62 92v-6M28 52h-6M102 52h-6" fill="none"/></g>
+<g class="cl" fill="#FFFCF6"><path d="M150 50a12 12 0 0 1 22-6 14 14 0 0 1 26 6 10 10 0 0 1-2 20h-42a10 10 0 0 1-4-20z"/></g>
+<path d="M-4 192 70 112 140 192z" fill="#B9DAA5"/><path d="M70 112 54 132l10-5 6 9 8-9 9 6z" fill="#FFFCF6"/>
+<path d="M100 192 190 92 280 192z" fill="#B9DAA5"/><path d="M190 92 172 114l10-5 8 10 8-10 10 6z" fill="#FFFCF6"/>
+<rect x="-4" y="190" width="368" height="44" fill="#FFFCF6"/><path d="M-4 207h368" fill="none"/>
+<g class="sway"><path d="M222 190 270 118 318 190z" fill="#F6D27A"/><path d="M270 118 254 140q16 8 32 0z" fill="#FFFCF6"/><rect x="262" y="160" width="16" height="30" rx="8" fill="#FFFCF6"/><rect x="238" y="172" width="14" height="12" rx="3" fill="#A8D3E6"/><rect x="288" y="172" width="14" height="12" rx="3" fill="#A8D3E6"/></g>
+<g class="tr"><rect x="0" y="190" width="62" height="24" rx="10" fill="#F2A497"/><rect x="7" y="195" width="13" height="9" rx="3" fill="#FFFCF6"/><rect x="25" y="195" width="13" height="9" rx="3" fill="#FFFCF6"/><rect x="43" y="195" width="13" height="9" rx="3" fill="#FFFCF6"/><circle cx="14" cy="217" r="4" fill="#F6D27A"/><circle cx="48" cy="217" r="4" fill="#F6D27A"/></g>
+<g fill="#FFFCF6" stroke-width="2"><circle class="sf" cx="30" cy="30" r="4"/><circle class="sf" style="animation-delay:-2s" cx="95" cy="70" r="3"/><circle class="sf" style="animation-delay:-4s" cx="150" cy="20" r="4"/><circle class="sf" style="animation-delay:-1s" cx="205" cy="60" r="3"/><circle class="sf" style="animation-delay:-5s" cx="265" cy="30" r="4"/><circle class="sf" style="animation-delay:-3s" cx="325" cy="75" r="3"/></g>
+</svg>
+<div class="t">
+<h1>北陸冬日小旅行</h1>
+<p>2026.11.30 – 12.07 ・ 長野 ・ 輕井澤 ・ 富山 ・ 金澤</p>
+<div class="count" aria-live="polite"><span id="cdl">距離出發還有</span><b id="cd">–</b><span id="cdu">天</span></div>
+</div>
+</div>
+
+<section id="air">
+<h2>航班資訊</h2>
+<div class="card flight"><span class="tag c-sky">去程</span>
+<div class="fr"><div><big>07:20</big>桃園 TPE<br><small>第 2 航廈</small></div><div class="line air"></div><div><big>11:15</big>富山<br><small>Toyama</small></div></div>
+<div class="meta"><span class="tag c-yellow">11/30（一）</span><span class="tag">華航 CI170</span><span class="tag">飛行 2 小時 55 分</span><span class="tag">行李 1PC</span><span class="tag c-green">訂位 OK</span></div>
+<p class="note">11:15 抵達，12:30 富山空港店取車，中間約 75 分鐘可辦入境、領行李。</p></div>
+<div class="card flight"><span class="tag c-coral">回程</span>
+<div class="fr"><div><big>12:15</big>富山<br><small>Toyama</small></div><div class="line air"></div><div><big>14:55</big>桃園 TPE<br><small>第 2 航廈</small></div></div>
+<div class="meta"><span class="tag c-yellow">12/07（一）</span><span class="tag">華航 CI171</span><span class="tag">飛行 3 小時 40 分</span><span class="tag">行李 1PC</span><span class="tag c-green">訂位 OK</span></div>
+<p class="note">⚠️ 11:00 還車、約 12:15 起飛，中間只有約 75 分鐘要還車、報到、過安檢。建議提早還車，或向租車公司改時間。</p></div>
+</section>
+<section id="flight">
+<h2>租車資訊</h2>
+<div class="card"><span class="tag c-sky">富山空港店</span>
+<div class="fr"><div><big>11/30</big>12:30 取車</div><div class="line"></div><div><big>12/07</big>11:00 還車</div></div>
+<dl class="inf"><dt>車種</dt><dd>Noah 油電（W2 級）</dd><dt>預約號</dt><dd>98161747500</dd><dt>店鋪</dt><dd><a href="https://www.google.com/maps/search/?api=1&query=%E5%AF%8C%E5%B1%B1%E5%B8%82%E7%A7%8B%E3%83%B6%E5%B3%B681-3" target="_blank" rel="noopener">富山市秋ヶ島 81-3</a><br>TEL 076-429-8888</dd><dt>總額</dt><dd><span class="tag c-yellow">124,630 円（含稅）</span></dd><dt>高速費</dt><dd id="etc">計算中…</dd></dl><p class="note">距離、時間與 ETC 費用為估算：以 NEXCO 普通車費率（24.6 円/km＋150 円）計算，12/5、12/6 套用休日割引 30%。冬季積雪路段會更久，實際請以 Google Maps 與 NEXCO 查詢為準。</p></div>
+</section>
+
+<section id="plan">
+<h2>每日行程</h2>
+<div class="days" id="days" role="tablist"></div>
+<h3 class="dh" id="dh"></h3>
+<div class="card wx" id="wx"></div>
+<div class="sumbar" id="sum"></div>
+<ol class="tl pop" id="tl"></ol>
+</section>
+
+<section id="stay">
+<h2>住宿資訊</h2>
+<div class="row" style="margin:-4px 0 12px"><span class="tag c-coral">共 7 晚</span><span class="tag c-sky">4 間飯店</span><span class="tag c-yellow">11/30 – 12/07</span></div>
+<div class="card" style="margin-bottom:12px"><span class="tag c-sky">11/30 – 12/02</span> <span class="tag">2 晚</span><h3 style="margin:8px 0 0;font-size:18px"><a href="https://www.google.com/maps/search/?api=1&query=%E9%95%B7%E9%87%8E%E6%97%A5%E8%88%AA%E9%83%BD%E5%B8%82%E9%A3%AF%E5%BA%97" target="_blank" rel="noopener">長野日航都市飯店</a></h3></div><div class="card" style="margin-bottom:12px"><span class="tag c-coral">12/02 – 12/04</span> <span class="tag">2 晚</span><h3 style="margin:8px 0 0;font-size:18px"><a href="https://www.google.com/maps/search/?api=1&query=%E5%AF%8C%E5%B1%B1%E5%B8%8C%E7%88%BE%E9%A0%93%E9%80%B8%E6%9E%97%E9%85%92%E5%BA%97" target="_blank" rel="noopener">富山希爾頓逸林酒店</a></h3><dl class="inf"><dt>備註</dt><dd>有飲水機・無停車場</dd></dl></div><div class="card" style="margin-bottom:12px"><span class="tag c-green">12/04 – 12/06</span> <span class="tag">2 晚</span><h3 style="margin:8px 0 0;font-size:18px"><a href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E6%BE%A4%20HOTEL%20AMANEK" target="_blank" rel="noopener">金澤 HOTEL AMANEK</a></h3></div><div class="card" style="margin-bottom:12px"><span class="tag c-yellow">12/06 – 12/07</span> <span class="tag">1 晚</span><h3 style="margin:8px 0 0;font-size:18px"><a href="https://www.google.com/maps/search/?api=1&query=%E5%AF%8C%E5%B1%B1%E7%AB%99%E5%89%8D%E5%A4%A7%E5%92%8C%20ROYNET%20%E9%A3%AF%E5%BA%97" target="_blank" rel="noopener">富山站前大和 ROYNET 飯店</a></h3><dl class="inf"><dt>備註</dt><dd>還車前一晚</dd></dl></div>
+</section>
+
+<section id="pre">
+<h2>出發前清單</h2>
+<div class="prog" id="p-pre"></div>
+<ul class="ck" id="l-pre"></ul>
+</section>
+
+<section id="pack">
+<h2>行李清單</h2>
+<div class="prog" id="p-pack"></div>
+<div id="g-pack"></div>
+</section>
+<footer>祝旅途平安，雪地開車小心 ❄️</footer>
+</main>
+
+<script>
+var DAYS=[
+{d:"11/30",w:"一",t:"取車・長野",we:0,wx:{l:"長野市",i:"🌥️",t:"約 1–9°C",n:"長野偏乾冷，北陸沿海多雲雨；山區清晨路面可能結冰"},s:[
+["12:30","富山空港店取車","開車","租車",0,"記得帶駕照與日文譯本",null],
+["10:00–20:00","入善 牡蠣之星","開車","美食",0,"冬季牡蠣正好吃",[56, 65, 30]],
+["06:00–16:00","善光寺","開車","景點",1,"周邊店家營業到 18:00",[100, 100, 85]],
+["10:30–15:00","十割そば 大善","步行","美食",0,"來不及也沒關係，附近很多蕎麥麵或味噌拉麵",[0.8, 12, 0]],
+["09:30–20:00","鶴屋 長野中央店","步行","購物",0,"長野限定商品",[1.5, 20, 0]],
+["","長野日航都市飯店","開車","住宿",0,"11/30 – 12/2",[2, 10, 0]]]},
+{d:"12/1",w:"二",t:"地獄谷・輕井澤",we:0,wx:{l:"輕井澤",i:"❄️",t:"約 -5–4°C",n:"清晨很冷，路面易結冰；晚上看聖誕樹請穿厚"},s:[
+["08:30–17:00","地獄谷野猿公苑","開車","景點",1,"停車場需再步行約 30 分鐘",[30, 55, 0]],
+["10:00–22:00","Gelateria Gina","開車","美食",0,"",[90, 80, 70]],
+["08:00–18:00","浅野屋 軽井沢旧道本店","步行","美食",0,"麵包名店",[0.7, 10, 0]],
+["10:00–19:00","輕井澤王子購物廣場","開車","購物",0,"Outlet",[3, 10, 0]],
+["10:00–22:00","星野溫泉 蜻蜓之湯","開車","泡湯",0,"",[5, 12, 0]],
+["19:30","輕井澤高原教會","開車","景點",1,"19:30 看聖誕樹",[1.5, 5, 0]],
+["","長野日航都市飯店","開車","住宿",0,"12/1 – 12/2",[85, 70, 75]]]},
+{d:"12/2",w:"三",t:"戶隱・氷見・往富山",we:0,wx:{l:"戶隱",i:"☃️",t:"約 -3–5°C",n:"山區可能積雪；氷見、高岡平地約 3–10°C，雨雪交替"},s:[
+["","戸隠神社 中社","開車","景點",1,"山區可能積雪",[24, 45, 0]],
+["10:30–15:30","蕎麦処 うずら家","開車","美食",0,"",[1, 3, 0]],
+["","雨晴海岸","開車","景點",1,"氷見・高岡路線",[290, 210, 245]],
+["09:00–18:00","道の駅 雨晴","步行","景點",0,"",[0.3, 5, 0]],
+["08:30–18:00","氷見漁港場外市場 ひみ番屋街","開車","美食",0,"",[12, 20, 0]],
+["06:30–15:30","冰見魚市場食堂","步行","美食",0,"",[0.3, 5, 0]],
+["","高岡古城公園","開車","景點",0,"❓待定",[28, 40, 0]],
+["08:30–17:00","庄川峽遊覽船","開車","景點",0,"❓待定",[30, 45, 0]],
+["","富山希爾頓逸林酒店","開車","住宿",0,"有飲水機・無停車場",[42, 50, 33]]]},
+{d:"12/3",w:"四",t:"合掌村・三井",we:0,wx:{l:"五箇山・白川鄉",i:"☃️",t:"約 -3–4°C",n:"豪雪地帶，積雪機率高，務必確認雪胎"},s:[
+["","相倉合掌造聚落","開車","景點",1,"",[68, 70, 60]],
+["","菅沼合掌造聚落","開車","景點",0,"",[5, 8, 0]],
+["","白川鄉與五箇山合掌構造村落","開車","景點",1,"世界遺產",[18, 25, 15]],
+["午餐","飛驒牛定食","步行","美食",0,"",[1, 5, 0]],
+["","三井 OUTLET PARK 北陸小矢部","開車","購物",0,"",[65, 60, 60]],
+["17:00–23:00","能登牛 しゃぶしゃぶ みのや","開車","美食",0,"位於金澤，建議先訂位",[48, 45, 40]],
+["","富山希爾頓逸林酒店","開車","住宿",0,"12/2 – 12/4",[62, 60, 55]]]},
+{d:"12/4",w:"五",t:"金澤散策",we:0,wx:{l:"金澤",i:"🌧️",t:"約 3–10°C",n:"冬季常下雨或冰雹，帶傘與防水外套"},s:[
+["09:00–16:00","金沢港いきいき魚市","開車","美食",0,"",[65, 65, 55]],
+["09:00–17:00","近江町市場","開車","美食",1,"金澤的廚房",[7, 20, 0]],
+["","東茶屋街","步行","景點",1,"",[1.5, 20, 0]],
+["09:00–17:00","尾山神社","步行","景點",0,"",[1.5, 20, 0]],
+["","白山比咩神社","開車","景點",0,"",[28, 50, 0]],
+["10:00–17:00","九谷陶藝村","開車","景點",0,"",[14, 25, 0]],
+["09:15–18:00","よらんかいね広場（JA 直賣所）","開車","購物",0,"",[14, 25, 0]],
+["11:00–21:30","もりもり寿し 藤江店","開車","美食",0,"",[25, 35, 0]],
+["18:00–22:00","げは","開車","美食",0,"",[6, 20, 0]],
+["","金澤 HOTEL AMANEK","開車","住宿",0,"12/4 – 12/6",[3, 10, 0]]]},
+{d:"12/5",w:"六",t:"加賀・福井",we:1,wx:{l:"加賀",i:"🌧️",t:"約 3–10°C",n:"常有陣雨，海邊風大"},s:[
+["08:30–18:00","JA 加賀 JA グリーン加賀","開車","購物",0,"",[40, 40, 30]],
+["","鶴仙溪","開車","景點",0,"",[17, 30, 0]],
+["09:00–18:00","道の駅 蓮如の里あわら","開車","購物",0,"福井縣",[40, 45, 25]],
+["09:00–17:00","きららの丘（JA 福井縣直賣所）","開車","購物",0,"",[6, 12, 0]],
+["11:00–23:00","回転寿し処 太平","開車","美食",0,"",[32, 35, 25]],
+["","金澤 HOTEL AMANEK","開車","住宿",0,"",[42, 40, 30]]]},
+{d:"12/6",w:"日",t:"能登半島",we:1,wx:{l:"輪島",i:"🌬️",t:"約 3–10°C",n:"能登海風強、體感更冷；出發前確認道路狀況"},s:[
+["09:00–17:00","能登食祭市場","開車","美食",0,"",[75, 85, 0]],
+["09:00–16:50","Noto Milk","開車","美食",0,"",[25, 35, 0]],
+["","白米千枚田","開車","景點",1,"路況請事先確認",[85, 100, 0]],
+["","富山站前大和 ROYNET 飯店","開車","住宿",0,"12/6 – 12/7。當天車程很長",[190, 200, 35]]]},
+{d:"12/7",w:"一",t:"還車回家",we:0,wx:{l:"富山市",i:"🌥️",t:"約 2–9°C",n:"還車日，預留時間"},s:[
+["11:00","富山空港店還車","開車","租車",0,"⚠️ 班機 12:15，11:00 還車偏緊，建議提早還車",[8, 20, 0]],
+["12:15","華航 CI171 富山 → 桃園","飛機","航班",0,"14:55 抵達桃園第 2 航廈",null],
+["","整理行李，平安回家","","",0,"旅途愉快",null]]}];
+var PRE=["確認護照效期","駕照＋日文譯本","填寫 Visit Japan Web","買 eSIM 或網卡","兌換日幣現金","辦旅平險","下載離線地圖","列印租車與訂房確認"];
+var PACK={"證件與錢":["護照","駕照與譯本","日幣與信用卡","租車預約截圖"],"冬季衣物":["發熱衣","防風防水外套","手套帽子圍巾","防滑雪鞋"],"電子用品":["手機與充電線","車充／行動電源","手機架","耳機"],"其他":["暖暖包","護唇膏與乳液","常備藥","環保購物袋"]};
+var store={};try{store=JSON.parse(localStorage.getItem("hokuriku-trip")||"{}")}catch(e){}
+function save(){try{localStorage.setItem("hokuriku-trip",JSON.stringify(store))}catch(e){}}
+function list(el,items,pre,prog){
+ var ul=document.getElementById(el);
+ items.forEach(function(x,i){
+  var id=pre+i,li=document.createElement("li"),lb=document.createElement("label"),c=document.createElement("input"),sp=document.createElement("span");
+  c.type="checkbox";c.checked=!!store[id];sp.textContent=x;
+  c.onchange=function(){if(c.checked)store[id]=1;else delete store[id];save();upd()};
+  lb.appendChild(c);lb.appendChild(sp);li.appendChild(lb);ul.appendChild(li)});
+}
+function upd(){
+ [["p-pre","l-pre"],["p-pack","g-pack"]].forEach(function(p){
+  var a=document.querySelectorAll("#"+p[1]+" input"),n=0;
+  a.forEach(function(c){if(c.checked)n++});
+  document.getElementById(p[0]).textContent="已完成 "+n+" / "+a.length+(n==a.length?" 🎉":"")})}
+list("l-pre",PRE,"p",1);
+var g=document.getElementById("g-pack"),k=0;
+Object.keys(PACK).forEach(function(n,gi){
+ var h=document.createElement("h3");h.className="pg";h.innerHTML='<span class="tag '+["c-coral","c-yellow","c-sky","c-green"][gi%4]+'"></span>';
+ h.firstChild.textContent=n;g.appendChild(h);
+ var ul=document.createElement("ul");ul.className="ck";ul.id="pk"+gi;g.appendChild(ul);
+ list("pk"+gi,PACK[n],"k"+gi+"_",1)});
+upd();
+var dw=document.getElementById("days"),tl=document.getElementById("tl"),dh=document.getElementById("dh");
+DAYS.forEach(function(d,i){
+ var b=document.createElement("button");b.className="day";b.setAttribute("role","tab");
+ b.innerHTML="<small>"+d.w+"</small><b>"+d.d+"</b>";b.onclick=function(){show(i,true)};dw.appendChild(b)});
+function fmt(m){return m>=60?Math.floor(m/60)+" 小時"+(m%60?" "+m%60+" 分":""):m+" 分"}
+function toll(l,we){if(!l||!l[2])return 0;var t=150+24.6*l[2];if(we)t*=.7;return Math.round(t/10)*10}
+function countLeg(s){return ["景點","住宿","租車"].indexOf(s[3])!==-1}
+function stat(d){
+ var k=0,m=0,t=0;
+ d.s.forEach(function(s){
+  var l=s[6];
+  if(l&&countLeg(s)){k+=l[0];m+=l[1];t+=toll(l,d.we)}
+ });
+ return{k:Math.round(k),m:m,t:t}
+}
+(function(){
+ var a=0,k=0;
+ DAYS.forEach(function(d){var x=stat(d);a+=x.t;k+=x.k});
+ document.getElementById("etc").textContent=
+  "景點／住宿／取還車路段估算：約 ¥"+a.toLocaleString()+"（約 "+k+" km）";
+})();
+var WEATHER_LOCATIONS={
+ "11/30":{name:"長野市",lat:36.6513,lon:138.181},
+ "12/1":{name:"輕井澤",lat:36.3488,lon:138.5967},
+ "12/2":{name:"氷見",lat:36.856,lon:136.987},
+ "12/3":{name:"白川鄉",lat:36.257,lon:136.906},
+ "12/4":{name:"金澤",lat:36.5613,lon:136.6562},
+ "12/5":{name:"加賀",lat:36.302,lon:136.315},
+ "12/6":{name:"輪島",lat:37.390,lon:136.899},
+ "12/7":{name:"富山市",lat:36.6953,lon:137.2113}
+};
+var weatherRequestId=0;
+function weatherInfo(code){
+ var map={0:["☀️","晴朗"],1:["🌤️","大致晴朗"],2:["⛅","局部多雲"],3:["☁️","陰天"],45:["🌫️","有霧"],48:["🌫️","有霧"],51:["🌦️","毛毛雨"],53:["🌦️","毛毛雨"],55:["🌧️","毛毛雨"],56:["🌧️","凍毛毛雨"],57:["🌧️","凍毛毛雨"],61:["🌧️","小雨"],63:["🌧️","中雨"],65:["🌧️","大雨"],66:["🌧️","凍雨"],67:["🌧️","凍雨"],71:["🌨️","小雪"],73:["🌨️","中雪"],75:["❄️","大雪"],77:["🌨️","雪粒"],80:["🌦️","短暫陣雨"],81:["🌧️","陣雨"],82:["🌧️","強陣雨"],85:["🌨️","陣雪"],86:["❄️","強陣雪"],95:["⛈️","雷雨"],96:["⛈️","雷雨，可能有冰雹"],99:["⛈️","強雷雨，可能有冰雹"]};
+ return map[code]||["🌡️","天氣狀況未知"];
+}
+function renderWeather(d){
+ var requestId=++weatherRequestId;
+ var place=WEATHER_LOCATIONS[d.d];
+ var bx=document.getElementById("wx");
+ bx.innerHTML="";
+ function el(tag,cls,text){
+  var node=document.createElement(tag);
+  if(cls)node.className=cls;
+  if(text)node.textContent=text;
+  return node;
+ }
+ function addAttribution(){
+  var credit=el("small","","資料來源：");
+  var link=el("a","","Open-Meteo");
+  link.href="https://open-meteo.com/";
+  link.target="_blank";
+  link.rel="noopener";
+  credit.appendChild(link);
+  bx.appendChild(credit);
+  var g=el("a","tag c-yellow","查看即時預報 ↗");
+  g.href="https://www.google.com/search?q="+encodeURIComponent(place.name+" 天氣預報");
+  g.target="_blank";
+  g.rel="noopener";
+  g.style.display="table";
+  g.style.marginTop="8px";
+  bx.appendChild(g);
+ }
+ function showFallback(message){
+  if(requestId!==weatherRequestId)return;
+  bx.innerHTML="";
+  var h=el("div","wh");
+  h.appendChild(el("span","wi",d.wx.i));
+  var text=el("div");
+  text.appendChild(el("b","",place.name+"　平年氣候參考"));
+  text.appendChild(el("br"));
+  text.appendChild(el("small","","非當日預報"));
+  h.appendChild(text);
+  bx.appendChild(h);
+  bx.appendChild(el("p","note",message+"。"+d.wx.n));
+  addAttribution();
+ }
+ var loading=el("div","wh");
+ loading.appendChild(el("span","wi","🌤️"));
+ loading.appendChild(el("b","",place.name+"　正在取得天氣預報…"));
+ bx.appendChild(loading);
+ var url=new URL("https://api.open-meteo.com/v1/forecast");
+ url.search=new URLSearchParams({
+  latitude:place.lat,
+  longitude:place.lon,
+  daily:"weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max",
+  timezone:"Asia/Tokyo",
+  forecast_days:"16"
+ });
+ var dp=d.d.split("/");
+ var dateKey="2026-"+("0"+dp[0]).slice(-2)+"-"+("0"+dp[1]).slice(-2);
+ fetch(url)
+  .then(function(response){
+   if(!response.ok)throw new Error("天氣服務暫時無法使用");
+   return response.json();
+  })
+  .then(function(data){
+   if(requestId!==weatherRequestId)return;
+   var daily=data.daily;
+   var index=daily&&daily.time?daily.time.indexOf(dateKey):-1;
+   if(index<0){
+    showFallback("目前尚無該日的預報");
+    return;
+   }
+   var condition=weatherInfo(daily.weather_code[index]);
+   var min=daily.temperature_2m_min[index];
+   var max=daily.temperature_2m_max[index];
+   var rain=daily.precipitation_probability_max[index];
+   bx.innerHTML="";
+   var h=el("div","wh");
+   h.appendChild(el("span","wi",condition[0]));
+   var text=el("div");
+   text.appendChild(el("b","",place.name+"　"+condition[1]));
+   text.appendChild(el("br"));
+   text.appendChild(el("small","","預報低溫 "+Math.round(min)+"°C・高溫 "+Math.round(max)+"°C"));
+   h.appendChild(text);
+   bx.appendChild(h);
+   var rainText=rain==null?"降雨機率目前無資料":"降雨機率 "+Math.round(rain)+"%";
+   bx.appendChild(el("p","note",rainText+"。預報可能變動，出發前請再次確認。"));
+   addAttribution();
+  })
+  .catch(function(){
+   showFallback("目前無法取得即時預報");
+  });
+}
+function show(i,anim){
+ var d=DAYS[i],TC={"開車":"c-coral","步行":"c-green","住宿":"c-sky"};
+ Array.prototype.forEach.call(dw.children,function(b,j){
+  b.setAttribute("aria-selected",j==i);b.classList.remove("bounce");
+  if(j==i&&anim){void b.offsetWidth;b.classList.add("bounce")}});
+ dh.textContent="Day "+(i+1)+"・"+d.t;
+ function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x)e.textContent=x;return e}
+ renderWeather(d);
+ var st=stat(d),sm=document.getElementById("sum");sm.innerHTML="";
+ sm.appendChild(el("span","tag c-green","📍 景點路段約 "+st.k+" km"));
+ sm.appendChild(el("span","tag c-sky","⏱ 景點路段移動約 "+fmt(st.m)));
+ sm.appendChild(el("span","tag c-yellow","ETC 約 ¥"+st.t.toLocaleString()+(d.we?"（休日折扣假設）":"")));
+ tl.innerHTML="";tl.classList.remove("pop");
+ d.s.forEach(function(s,j){
+  var li=el("li",s[4]?"must":"");li.style.setProperty("--i",j);
+  var a=el("div");var biz=["景點","美食","購物","泡湯"].indexOf(s[3])!==-1;
+  if(s[0])a.appendChild(el("span","tm",(biz&&s[0].indexOf("–")>-1?"🕒 營業 ":"")+s[0]));else if(biz)a.appendChild(el("span","tm","🕒 營業時間待確認"));var tt=el("span","tt");
+  if(["景點","美食","購物","泡湯","住宿","租車"].indexOf(s[3])!==-1&&s[0]!=="午餐"){
+   var mq=s[3]==="租車"?"富山市秋ヶ島81-3":s[1].split("（")[0];
+   var ml=el("a","",s[1]);ml.href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(mq);ml.target="_blank";ml.rel="noopener";tt.appendChild(ml)
+  }else tt.textContent=s[1];
+  a.appendChild(tt);li.appendChild(a);
+  var r=el("div","row");
+  function tg(t,c){r.appendChild(el("span","tag "+c,t))}
+  if(s[2])tg(s[2],TC[s[2]]||"");
+  var l=s[6];
+  if(l&&countLeg(s)){
+ tg((l[0]<10?l[0]:Math.round(l[0]))+" km・"+fmt(l[1]),"");
+ var t=toll(l,d.we);
+ if(t)tg("ETC ¥"+t.toLocaleString(),"c-yellow")
+}
+  if(s[3])tg(s[3],"");
+  if(s[4])tg("必去","must-b");
+  if(r.children.length)li.appendChild(r);
+  if(s[5])li.appendChild(el("p","note",s[5]));
+  tl.appendChild(li)});
+ void tl.offsetWidth;tl.classList.add("pop")}
+show(0,false);
+(function(){
+ var t=new Date(2026,10,30),n=new Date(),a=new Date(n.getFullYear(),n.getMonth(),n.getDate()),
+ df=Math.round((t-a)/864e5);
+ if(df>0){document.getElementById("cd").textContent=df}
+ else if(df>-8){document.getElementById("cdl").textContent="旅行進行中";document.getElementById("cd").textContent="Day "+(1-df);document.getElementById("cdu").textContent=""}
+ else{document.getElementById("cdl").textContent="旅程結束，歡迎回家";document.getElementById("cd").textContent="🏠";document.getElementById("cdu").textContent=""}
+})();
+</script>
+</body>
+</html>
